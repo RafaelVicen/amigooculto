@@ -1,65 +1,62 @@
-# 🎄 Amigo Secreto Criptografado (AES) 🔒
+# 🎄 Amigo Secreto Criptografado (Client-Side)
 
-Um sistema simples e seguro para sorteio de **Amigo Secreto** (*Secret Santa*) para grupos de família e amigos. Este projeto roda 100% no navegador (*Client-Side*) e utiliza criptografia de nível industrial para garantir que ninguém descubra os resultados antes da hora, mesmo inspecionando o código.
-
----
+Um sistema seguro de Amigo Secreto (Amigo Oculto) desenvolvido inteiramente no lado do cliente (navegador) para garantir a privacidade do sorteio. Utiliza criptografia AES para proteger o nome do presenteado e um modelo de login multi-usuário (persistido localmente) para que vários organizadores possam gerenciar seus sorteios de forma independente.
 
 ## ✨ Funcionalidades Principais
 
-* **Segurança Avançada:** Utiliza o algoritmo **AES-256** (Advanced Encryption Standard) para criptografar os resultados.
-* **Chave Única:** A senha do participante atua como a chave de descriptografia para o seu resultado.
-* **Independente:** Não requer *backend*, servidor ou banco de dados. Pode ser hospedado gratuitamente no Netlify Drop ou GitHub Pages.
-* **Interface Amigável:** Design simples onde o participante clica no seu nome e insere sua chave.
+* **Login Multi-Organizador (Local):** Permite que diferentes pessoas usem o mesmo site para criar sorteios separados, com credenciais de login e dados salvos no `localStorage` do navegador do organizador.
+* **Segurança de Senha:** As senhas dos organizadores são armazenadas usando **Hash SHA-256**, garantindo que as senhas nunca sejam salvas em texto simples.
+* **Sorteio Criptografado (AES-256):** O nome do presenteado é criptografado usando o algoritmo AES-256 e uma chave secreta única gerada para cada participante.
+* **Link Compartilhável Único:** Após o sorteio, é gerado um URL contendo os dados criptografados. Este link é distribuído aos participantes, permitindo que eles acessem a página de revelação sem precisar de login.
+* **Regra de Paridade Flexível:** O sistema só permite sorteios com um número **par** de participantes (mínimo de 4, máximo de 20).
+* **Design 100% Client-Side:** Não requer servidor nem base de dados; o site pode ser hospedado de forma gratuita e ilimitada.
 
----
+## 🛡️ Segurança do Projeto
+
+O projeto utiliza o melhor da segurança Client-Side, mas é importante entender suas limitações:
+
+| Aspecto | Nível de Segurança | Protegido Por |
+| :--- | :--- | :--- |
+| **Segredo do Sorteio (Quem tirou quem)** | **Alto** | AES-256 (Padrão de segurança de dados) |
+| **Senha do Organizador** | **Médio/Alto** | Hashing SHA-256 (Protege contra leitura direta) |
+| **Persistência de Dados (Local)** | **Baixo** | `localStorage` (Dados não são salvos em nuvem) |
+
+> **Atenção:** Embora a criptografia seja de nível profissional, a persistência dos dados (contas e configurações) depende do navegador do organizador. A limpeza do cache resultará na perda de todos os sorteios e utilizadores.
 
 ## 🛠️ Tecnologias Utilizadas
 
-| Tecnologia | Função |
-| :--- | :--- |
-| **HTML5** | Estrutura da página. |
-| **CSS3** | Estilização temática (Natalina). |
-| **JavaScript (ES6+)** | Lógica do sistema e interação. |
-| **CryptoJS** | Biblioteca para realizar a Criptografia AES (via CDN). |
+* **HTML5**
+* **CSS3**
+* **JavaScript (Puro)**
+* **CryptoJS:** Biblioteca para criptografia AES e Hashing SHA-256.
 
----
+## ⚙️ Como Usar
 
-## 🔑 Segurança e Criptografia (AES)
+### Para o Organizador
 
-O sistema utiliza **Criptografia Simétrica AES**. O nome do amigo secreto é "trancado" matematicamente e a **senha individual é a única chave** que pode destrancar o resultado.
+1.  Acesse a URL do site (após a hospedagem).
+2.  Clique em **"Crie sua conta"** e cadastre um nome de utilizador e senha.
+3.  Faça login no Painel do Organizador.
+4.  Insira a lista de participantes, um nome por linha. O número deve ser **par** (entre 4 e 20).
+5.  Clique em **"Sortear e Gerar Chaves"**.
+6.  **Distribua as Informações:**
+    * **Envie o "Link Único Compartilhável"** para todos os participantes.
+    * **Envie a "Chave Única"** (encontrada na Lista de Chaves) para o participante correspondente **em privado**.
 
-Isso garante que, mesmo que um usuário mal-intencionado veja o código fonte (`U2FsdGVkX1...`), ele não conseguirá decifrar o nome sem ter a chave exata daquela pessoa.
+### Para o Participante
 
+1.  Clique no **Link Único Compartilhável** recebido do organizador.
+2.  O site irá carregar a lista de nomes. Clique no **seu nome**.
+3.  Insira a **Chave Secreta** que o organizador enviou em privado.
+4.  O nome do seu Amigo Secreto será revelado!
 
+## 🌐 Hospedagem (Deployment)
 
-[Image of AES encryption decryption process diagram]
+O Netlify é o método mais recomendado para este projeto estático.
 
+### Opção: Netlify
 
-* **Vulnerabilidade:** A única vulnerabilidade deste sistema são as **senhas de 4 dígitos**. Recomendamos usar **senhas de palavras** (ex: `presente-feliz`) em vez de números para proteção máxima contra *scripts* de força bruta.
-
----
-
-## 🚀 Configuração e Deploy
-
-### 1. Preparação dos Arquivos
-
-Crie os 3 arquivos essenciais (`index.html`, `style.css`, `script.js`) na raiz do seu projeto.
-
-### 2. Gerar a Lista Criptografada (Crucial)
-
-Você deve rodar o arquivo **`gerador.html`** (que **não** deve ser enviado para o GitHub) para criar a lista de dados trancados.
-
-1.  **Edite** o código dentro do `gerador.html` com os nomes e as senhas.
-2.  Abra o `gerador.html` no seu navegador.
-3.  **Copie** o array criptografado que aparecer na caixa de texto.
-
-### 3. Inserir Dados e Finalizar o Código
-
-**A. Atualizar `index.html`:** Adicione o link para o **CryptoJS** dentro do `<head>`:
-
-```html
-<head>
-    <link rel="stylesheet" href="style.css">
-    
-    <script src="[https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js](https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js)"></script>
-</head>
+1.  Crie uma conta no Netlify e conecte-a ao seu repositório GitHub.
+2.  Inicie a importação do projeto, selecionando o repositório.
+3.  Deixe os campos **Build Command** e **Publish Directory** vazios.
+4.  Clique em **Deploy Site**. O site será publicado automaticamente no seu endereço Netlify.
