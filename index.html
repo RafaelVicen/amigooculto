@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Amigo Secreto Criptografado</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1><span class="emoji">🎄</span> Amigo Secreto Criptografado</h1>
+        
+        <div id="login-area" class="card escondido">
+            <h2><span class="emoji">🔑</span> Entrar</h2>
+            <p>Acesse seu painel para configurar ou rever seu sorteio.</p>
+            
+            <label for="login-username">Utilizador:</label>
+            <input type="text" id="login-username" placeholder="Seu nome de utilizador">
+            
+            <label for="login-senha">Senha:</label>
+            <input type="password" id="login-senha" placeholder="Sua senha secreta">
+            
+            <p id="login-erro" class="erro"></p>
+            <button onclick="fazerLogin()">Entrar</button>
+
+            <p style="margin-top: 15px;">Novo organizador? <a href="#" onclick="trocarTela('register-area')">Crie sua conta</a>.</p>
+            <button onclick="document.getElementById('login-area').classList.add('escondido'); document.getElementById('area-participantes').classList.remove('escondido');">Acessar Sorteio (Participante)</button>
+        </div>
+
+        <div id="register-area" class="card escondido">
+            <h2><span class="emoji">✍️</span> Novo Cadastro</h2>
+            <p>Crie suas credenciais (serão salvas localmente no seu navegador).</p>
+            
+            <label for="reg-username">Utilizador:</label>
+            <input type="text" id="reg-username" placeholder="Escolha um nome de utilizador">
+            
+            <label for="reg-senha">Senha:</label>
+            <input type="password" id="reg-senha" placeholder="Mínimo 5 caracteres">
+            
+            <p id="reg-erro" class="erro"></p>
+            <button onclick="cadastrar()">Registar</button>
+            <p style="margin-top: 15px;"><a href="#" onclick="trocarTela('login-area')">Já tenho conta</a>.</p>
+        </div>
+        
+
+        <div id="organizer-panel" class="card escondido">
+            <h2><span class="emoji">⚙️</span> Configurar Sorteio</h2>
+            <p>Insira um nome por linha (10 a 20 participantes):</p>
+            <textarea id="nomes-input" placeholder="Ex: Isabel Cortez&#10;Carlinhos&#10;..."></textarea>
+            <button onclick="iniciarProcesso()">Sortear e Gerar Chaves</button>
+
+            <div id="output-chaves" class="escondido">
+                
+                <div id="link-area" class="card output-section">
+                    <h3><span class="emoji">🔗</span> Link Único Compartilhável</h3>
+                    <p class="aviso">Envie **ESTE LINK** para todos os participantes. Ele contém o sorteio criptografado.</p>
+                    <pre id="output-link" class="chave-output" onclick="navigator.clipboard.writeText(this.innerText); alert('Link copiado!');"></pre>
+                    <p style="font-size: 0.8em; text-align: center;">(Clique para copiar)</p>
+                </div>
+                
+                <div class="card output-section">
+                    <h3><span class="emoji">🔒</span> Chaves para Distribuição</h3>
+                    <p class="aviso">Copie e salve esta lista. Você deve enviar a chave certa para a pessoa certa por mensagem privada.</p>
+                    <pre id="lista-chaves-organizer" class="chave-output"></pre>
+                </div>
+            </div>
+            
+            <button onclick="fazerLogout()">Sair do Painel</button>
+        </div>
+
+        <div id="area-participantes" class="card escondido">
+            <h2><span class="emoji">🎁</span> Clique no seu Nome</h2>
+            <div id="lista-nomes">
+                <p>O sorteio ainda não foi configurado ou ativado. Use o link do organizador.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modal-titulo">Olá!</h3>
+
+            <div id="step-senha">
+                <p>Insira sua **Chave Secreta** enviada pelo organizador:</p>
+                <input type="text" id="input-senha" placeholder="Sua Chave Única" maxlength="10">
+                <p id="erro-msg" class="erro"></p>
+                <button onclick="verificarAmigo()">Revelar Amigo Secreto</button>
+            </div>
+
+            <div id="step-resultado" class="escondido">
+                <p class="aviso">Parabéns! Você tirou:</p>
+                <h1 id="nome-amigo-secreto"></h1>
+                <button onclick="document.getElementById('modal').style.display = 'none'">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
