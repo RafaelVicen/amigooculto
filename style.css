@@ -1,200 +1,233 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f7;
-    background-image: linear-gradient(135deg, #1e90ff 0%, #dc143c 100%);
-    color: #333;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f7;
+  background-image: linear-gradient(135deg, #1e90ff 0%, #dc143c 100%);
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
 }
 
 .container {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    max-width: 600px;
-    width: 100%;
-    margin-top: 50px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  margin-top: 50px;
 }
 
 h1 {
-    color: #dc143c; /* Vermelho natalino */
-    margin-bottom: 20px;
-    font-size: 2em;
+  color: #dc143c; /* Vermelho natalino */
+  margin-bottom: 20px;
+  font-size: 2em;
 }
 
 h2 {
-    color: #1e90ff; /* Azul royal */
-    margin-top: 1.5em;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+  color: #1e90ff; /* Azul royal */
+  margin-top: 1.5em;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
 }
 
 .emoji {
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 .card {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    margin-top: 20px;
-    text-align: left;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+  text-align: left;
 }
 
 /* --- Input e Botões --- */
 textarea#nomes-input {
-    width: 95%;
-    min-height: 150px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: vertical;
+  width: 95%;
+  min-height: 150px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
 }
 
-input[type="text"], input[type="password"] {
-    padding: 10px;
-    margin: 10px 0 15px 0;
-    width: 90%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin: 10px 0 15px 0;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
 }
 
 button {
-    background-color: #4CAF50; /* Verde */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
-    margin: 5px;
+  background-color: #4caf50; /* Verde */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  margin: 5px;
 }
 
 button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 #lista-nomes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .btn-nome {
-    background-color: #1e90ff;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
+  background-color: #1e90ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
 }
 
 .btn-nome:hover {
-    background-color: #0d47a1;
+  background-color: #0d47a1;
 }
 
 /* --- Output Chaves --- */
 .aviso {
-    background-color: #fff3cd;
-    color: #856404;
-    padding: 10px;
-    border: 1px solid #ffeeba;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 15px;
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 10px;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .chave-output {
-    background-color: #eee;
-    padding: 10px;
-    border-radius: 5px;
-    max-height: 250px;
-    overflow-y: auto;
-    white-space: pre-wrap;
-    font-family: monospace;
-    font-size: 0.9em;
-    text-align: left;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  max-height: 250px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 0.9em;
+  text-align: left;
 }
 
 .output-section {
-    margin-bottom: 30px;
-    padding: 15px;
+  margin-bottom: 30px;
+  padding: 15px;
 }
 
-/* --- Modal --- */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7);
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .btn-nome {
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+
+  textarea#nomes-input {
+    min-height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .btn-nome {
+    padding: 8px 12px;
+    font-size: 0.8em;
+  }
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
-    padding: 30px;
-    border: 1px solid #888;
-    width: 80%; 
-    max-width: 400px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: #333;
-    text-decoration: none;
-    cursor: pointer;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #input-senha {
-    padding: 10px;
-    margin: 10px 0 15px 0;
-    width: 90%;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
+  padding: 10px;
+  margin: 10px 0 15px 0;
+  width: 90%;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
 }
 
 #nome-amigo-secreto {
-    color: #dc143c;
-    font-size: 2.5em;
-    margin: 10px 0;
+  color: #dc143c;
+  font-size: 2.5em;
+  margin: 10px 0;
 }
 
 .erro {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
+}
+
+.sucesso {
+  color: green;
+  font-weight: bold;
 }
 
 .escondido {
-    display: none !important;
+  display: none !important;
 }
